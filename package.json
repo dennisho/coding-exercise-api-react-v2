@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-loader": "^8.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-papaparse": "^3.5.0",
     "react-scripts": "3.4.1",
     "react-test-renderer": "^16.13.1",
     "semantic-ui-react": "^0.88.2"

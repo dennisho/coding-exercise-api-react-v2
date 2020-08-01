@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom";
 import { Container, Header } from "semantic-ui-react";
 
 import ResultsList from "./ResultsList";
+import CSVReader from "./uploadbutton";
+
 
 const App = ({ children }) => (
   <Container style={{ margin: 20 }}>
     <Header as="h3"><span role="img" aria-label="logo">⛵️</span> Breeze Church Management </Header>
-
+    <CSVReader>Upload</CSVReader>
     {children}
   </Container>
 );
