@@ -66,11 +66,11 @@ export default class CSVReader1 extends Component {
           console.log(fndata);
         }
       }
-      else if (data[0].data.length === 5){
+      else if (data[0].data.length === 6){
         //People
         csvType = 'people';
         fnurl = 'http://127.0.0.1:8000/api/people';
-        fndata = {first_name:'',last_name:'',email_address:'',status:''};
+        fndata = {first_name:'',last_name:'',email_address:'',status:'',group_id: null};
         console.log(fndata);
       }
       else {
@@ -93,6 +93,7 @@ export default class CSVReader1 extends Component {
               fndata.last_name = data[i].data[2].toString();
               fndata.email_address = data[i].data[3].toString();
               fndata.status = data[i].data[4].toString();
+              fndata.group_id = data[i].data[5].toString();
             }
             fetchdata(fnurl + '/' + data[i].data[0].toString(),fndata,'PUT')
             .then(function(data3) {
@@ -113,6 +114,7 @@ export default class CSVReader1 extends Component {
               fndata.last_name = data[i].data[2].toString();
               fndata.email_address = data[i].data[3].toString();
               fndata.status = data[i].data[4].toString();
+              fndata.group_id = data[i].data[5].toString();
             }
             fetchdata(fnurl,fndata,'POST')
             .then(function(data3) {

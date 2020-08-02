@@ -4,8 +4,13 @@
   "private": true,
   "dependencies": {
     "babel-loader": "^8.1.0",
+    "datatables.net": "^1.10.21",
+    "datatables.net-buttons": "^1.6.2",
+    "datatables.net-buttons-dt": "^1.6.2",
+    "datatables.net-dt": "^1.10.21",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-papaparse": "^3.5.0",

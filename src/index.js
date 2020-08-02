@@ -4,6 +4,8 @@ import { Container, Header } from "semantic-ui-react";
 
 import ResultsList from "./ResultsList";
 import CSVReader from "./uploadbutton";
+import Tbl from "./Tbl";
+import './css/detailbutton.css';
 
 
 const App = ({ children }) => (
@@ -22,6 +24,7 @@ document.head.appendChild(styleLink);
 ReactDOM.render(
   <App>
     <ResultsList />
+    <Tbl />
   </App>,
   document.getElementById("root")
 );
