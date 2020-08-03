@@ -3,7 +3,7 @@ import { CSVReader } from 'react-papaparse';
 
 const buttonRef = React.createRef()
 
-async function fetchdata(url = '', data = {}, mtd = 'GET'){
+export async function fetchdata(url = '', data = {}, mtd = 'GET'){
     // Default options are marked with *
     const response = await fetch(url, {
     method: mtd, // *GET, POST, PUT, DELETE, etc.
@@ -21,7 +21,7 @@ async function fetchdata(url = '', data = {}, mtd = 'GET'){
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-async function GETdataNoBody(url = ''){
+export async function GETdataNoBody(url = ''){
  
   const response = await fetch(url, {
     method: 'GET',
@@ -47,6 +47,7 @@ export default class CSVReader1 extends Component {
   
   handleOnFileLoad = (data) => {
     console.log('---------------------------')
+    console.log(data)
     console.log(data[1])
     console.log(data[1].data.length)
     console.log(data[1].data[1])
@@ -127,78 +128,11 @@ export default class CSVReader1 extends Component {
           });
         }
       }
-
-      /*if(csvType !== 'error') {
-        for(let i=1; i < data.length; i++ ){
-
-          GETdataNoBody(fnurl + '/' + data[i].data[0].toString())
-          .then(data2 => {
-            console.log(data2);
-            //Has ID, update data
-            if(csvType === 'groups'){
-              fndata.group_name = data[i].data[1].toString();
-            } else if (csvType === 'people'){
-              fndata.first_name = data[i].data[1].toString();
-              fndata.last_name = data[i].data[2].toString();
-              fndata.email_address = data[i].data[3].toString();
-              fndata.status = data[i].data[4].toString();
-            }
-            fetchdata(fnurl + '/' + data[i].data[0].toString(),fndata,'PUT')
-            .then(data3 => {
-              console.log(data3);
-            })
-            .catch((error) => {
-              //console.error('Error:', error);
-            });
-          })
-          .catch((error) => {
-            //console.error('Error:', error);
-            //Has not ID, insert data
-            if(csvType === 'groups'){
-              fndata.group_name = data[i].data[1].toString();
-            } else if (csvType === 'people'){
-              fndata.first_name = data[i].data[1].toString();
-              fndata.last_name = data[i].data[2].toString();
-              fndata.email_address = data[i].data[3].toString();
-              fndata.status = data[i].data[4].toString();
-            }
-            fetchdata(fnurl,fndata,'POST')
-            .then(data3 => {
-              console.log(data3);
-            })
-            .catch((error) => {
-              //console.error('Error:', error);
-            });
-          });
-        }
-      }*/
     }
 
-    /*fetchdata('http://127.0.0.1:8000/api/groups', { group_name: data[1].data[1] },'POST')
-    .then(data => {
-      console.log(data); // JSON data parsed by `data.json()` call
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });*/
+    
 
-   /* fetch('http://127.0.0.1:8000/api/groups',{
-      method: 'POST',
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify({group_name: data[1].data[1]})
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-      console.error('Error:', error);
-    });*/
+
   }
 
   handleOnError = (err, file, inputElem, reason) => {
@@ -237,6 +171,7 @@ export default class CSVReader1 extends Component {
             }}
           >
             <button
+              id='openDialog'
               type='button'
               onClick={this.handleOpenDialog}
               style={{
@@ -267,6 +202,7 @@ export default class CSVReader1 extends Component {
               {file && file.name}
             </div>
             <button
+              id='removeFile'
               style={{
                 borderRadius: 0,
                 marginLeft: 0,
