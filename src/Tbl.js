@@ -35,9 +35,14 @@ class Tbl extends Component {
       let tablebody;
 
       if (d.people.length > 0){
-        tablebody = '<thead><tr><td>First Name</td><td>Last Name</td><td>Email Address</td></tr></thead>';
-        for(let i = 0; i < d.people.length; i++){
-          tablebody += '<tr><td>' + d.people[i].first_name + '</td><td>' + d.people[i].last_name + '</td><td>' + d.people[i].email_address + '</td></tr>';
+        if(d.people[0].first_name === null && d.people[0].last_name === null && d.people[0].email_address === null){
+          tablebody = '<tr><td>No people in this group</td></tr>';
+        }
+        else {
+          tablebody = '<thead><tr><td>First Name</td><td>Last Name</td><td>Email Address</td></tr></thead>';
+          for(let i = 0; i < d.people.length; i++){
+            tablebody += '<tr><td>' + d.people[i].first_name + '</td><td>' + d.people[i].last_name + '</td><td>' + d.people[i].email_address + '</td></tr>';
+          }
         }
       }
       else {

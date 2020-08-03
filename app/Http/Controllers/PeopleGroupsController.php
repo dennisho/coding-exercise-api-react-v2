@@ -9,12 +9,13 @@ class PeopleGroupsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *{"data":[]}
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $groups = DB::select('select * from breeze.`groups` inner join breeze.people on breeze.people.group_id = breeze.`groups`.id where breeze.people.status = \'active\' order by group_name, first_name, last_name', [1]);
+        $groups = DB::select('select * from breeze.`groups` left join breeze.people on breeze.people.group_id = breeze.`groups`.id where breeze.people.status = \'active\' or breeze.people.id IS NULL order by group_name, first_name, last_name
+        ', [1]);
 
         $jobj = array("data"=>[]);
 
