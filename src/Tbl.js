@@ -12,7 +12,7 @@ class Tbl extends Component {
     let table = this.$el.DataTable(
       {
         ajax: {
-          url: 'http://localhost:8000/api/groups'
+          url: 'http://localhost:8000/api/peoplegroups'
         },
         columns: [
           {
@@ -21,7 +21,6 @@ class Tbl extends Component {
             data: null,
             defaultContent: ''
           },
-          { data: "id" },
           { data: "group_name" }
         ],
         order: [[1, 'asc']]
@@ -31,22 +30,30 @@ class Tbl extends Component {
 
     function format(d) {
       // `d` is the original data object for the row
-      console.log(d);
-      return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Created At</td>' +
-        '<td>' + d.created_at + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Updated At</td>' +
-        '<td>' + d.updated_at + '</td>' +
-        '</tr>' +
-        '</table>';
+      console.log(d.people.length);
+
+      let tablebody;
+
+      if (d.people.length > 0){
+        tablebody = '<thead><tr><td>First Name</td><td>Last Name</td><td>Email Address</td></tr></thead>';
+        for(let i = 0; i < d.people.length; i++){
+          tablebody += '<tr><td>' + d.people[i].first_name + '</td><td>' + d.people[i].last_name + '</td><td>' + d.people[i].email_address + '</td></tr>';
+        }
+      }
+      else {
+        tablebody = '<tr><td>No people in this group</td></tr>';
+      }
+
+      let retTable = '<h4>Active Group Member(s)</h4><br><table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+      tablebody +
+      '</table>';
+
+      return retTable;
     }
 
     $('#grouptable tbody').on('click', 'td.details-control', function () {
-      var tr = $(this).closest('tr');
-      var row = table.row( tr );
+      let tr = $(this).closest('tr');
+      let row = table.row( tr );
 
       if ( row.child.isShown() ) {
           // This row is already open - close it
@@ -73,7 +80,6 @@ class Tbl extends Component {
         <thead>
           <tr>
             <th></th>
-            <th>id</th>
             <th>Group Name</th>
           </tr>
         </thead>
