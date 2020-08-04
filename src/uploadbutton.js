@@ -20,7 +20,16 @@ export async function fetchdata(url = '', data = {}, mtd = 'GET') {
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   });
-  return response.json(); // parses JSON response into native JavaScript objects
+  console.log(response);
+  let retval;
+  if(response.status === 204) {
+    retval = {status:response.status,data:{}};
+  }
+  else {
+    retval = {status:response.status,data:response.json()};
+  }
+  console.log(retval);
+  return retval; // parses JSON response into native JavaScript objects
 }
 
 //Call API with GET (No Body: data)
@@ -61,9 +70,10 @@ async function runAction(fnurl = '',data = {}, i, csvType, fndata, myelement) {
           console.log(data3);
           myelement = (<div className="ui blue inverted segment"><strong>Success</strong></div>);
           ReactDOM.render(myelement, document.getElementById('errmsg'));
-          window.location.reload(false);
+          setTimeout(function(){ window.location.reload(false); }, 3000);
         })
         .catch(function (error) {
+          console.log(error.status);
           //console.error('Error:', error);
         });
     })
@@ -85,11 +95,10 @@ async function runAction(fnurl = '',data = {}, i, csvType, fndata, myelement) {
           console.log(data3);
           myelement = (<div className="ui blue inverted segment"><strong>Success</strong></div>);
           ReactDOM.render(myelement, document.getElementById('errmsg'));
-          window.location.reload(false);
+          setTimeout(function(){ window.location.reload(false); }, 3000);
         })
         .catch(function (error) {
-          console.log('abb');
-          console.error('Error:', error);
+          //console.error('Error:', error);
         });
     });
 }
