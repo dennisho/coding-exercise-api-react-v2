@@ -1,0 +1,1 @@
+Hello!For this coding exercise, I have installed 5 additional packages to use. Here are the packages:i) Uploading and parsing CSV files - papaparse, babel-loaderii) Groups Table - jquery, datatables.net, datatables.net-dtI also included my testing CSV files under the folder called csvtestfile.Thank you for the time you’re putting in to review my code!  Cheers!
