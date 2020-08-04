@@ -52,20 +52,20 @@ export async function GETdataNoBody(url = '') {
 
 //Wrap API Calls in function so that each action will be async
 async function runAction(fnurl = '',data = {}, i, csvType, fndata, myelement) {
-  GETdataNoBody(fnurl + '/' + data[i].data[0].toString())
+  GETdataNoBody(fnurl + '/' + data[i].data[0].toString().trim().replace(/"/g, ""))
     .then(function (data2) {
       console.log(data2);
       //Has ID, update data
       if (csvType === 'groups') {
-        fndata.group_name = data[i].data[1].toString();
+        fndata.group_name = data[i].data[1].toString().trim().replace(/"/g, "");
       } else if (csvType === 'people') {
-        fndata.first_name = data[i].data[1].toString();
-        fndata.last_name = data[i].data[2].toString();
-        fndata.email_address = data[i].data[3].toString();
-        fndata.status = data[i].data[4].toString();
-        fndata.group_id = data[i].data[5].toString();
+        fndata.first_name = data[i].data[1].toString().trim().replace(/"/g, "");
+        fndata.last_name = data[i].data[2].toString().trim().replace(/"/g, "");
+        fndata.email_address = data[i].data[3].toString().trim().replace(/"/g, "");
+        fndata.status = data[i].data[4].toString().trim().replace(/"/g, "");
+        fndata.group_id = data[i].data[5].toString().trim().replace(/"/g, "");
       }
-      fetchdata(fnurl + '/' + data[i].data[0].toString(), fndata, 'PUT')
+      fetchdata(fnurl + '/' + data[i].data[0].toString().trim().replace(/"/g, ""), fndata, 'PUT')
         .then(function (data3) {
           console.log(data3);
           myelement = (<div className="ui blue inverted segment"><strong>Success</strong></div>);
@@ -81,13 +81,13 @@ async function runAction(fnurl = '',data = {}, i, csvType, fndata, myelement) {
       //console.error('Error:', error);
       //Has not ID, insert data
       if (csvType === 'groups') {
-        fndata.group_name = data[i].data[1].toString();
+        fndata.group_name = data[i].data[1].toString().trim().replace(/"/g, "");
       } else if (csvType === 'people') {
-        fndata.first_name = data[i].data[1].toString();
-        fndata.last_name = data[i].data[2].toString();
-        fndata.email_address = data[i].data[3].toString();
-        fndata.status = data[i].data[4].toString();
-        fndata.group_id = data[i].data[5].toString();
+        fndata.first_name = data[i].data[1].toString().trim().replace(/"/g, "");
+        fndata.last_name = data[i].data[2].toString().trim().replace(/"/g, "");
+        fndata.email_address = data[i].data[3].toString().trim().replace(/"/g, "");
+        fndata.status = data[i].data[4].toString().trim().replace(/"/g, "");
+        fndata.group_id = data[i].data[5].toString().trim().replace(/"/g, "");
       }
       console.log(fndata);
       fetchdata(fnurl, fndata, 'POST')
@@ -112,14 +112,11 @@ export default class CSVReader1 extends Component {
   }
 
   handleOnFileLoad = (data) => {
-    /*
+    
     console.log('---------------------------')
     console.log(data)
-    console.log(data[1])
-    console.log(data[1].data.length)
-    console.log(data[1].data[1])
     console.log('---------------------------')
-    */
+    
     ReactDOM.render('', document.getElementById('errmsg'));
 
     //check to see of there is data.  If there is data, continue.
@@ -129,7 +126,7 @@ export default class CSVReader1 extends Component {
       if (data[0].data.length === 2) {
         //Groups
         //check the header row to see if it matches the format
-        if (data[0].data.toString() === 'id,group_name') {
+        if (data[0].data.toString().trim().replace(/"|\s|\n/g, "") === 'id,group_name') {
           csvType = 'groups';
           fnurl = 'http://127.0.0.1:8000/api/groups';
           fndata = { group_name: '' }
@@ -144,7 +141,7 @@ export default class CSVReader1 extends Component {
       else if (data[0].data.length === 6) {
         //People
         //check the header row to see if it matches the format
-        if (data[0].data.toString() === 'id,first_name,last_name,email_address,status,group_id') {
+        if (data[0].data.toString().trim().replace(/"|\s|\n/g, "") === 'id,first_name,last_name,email_address,status,group_id') {
           csvType = 'people';
           fnurl = 'http://127.0.0.1:8000/api/people';
           fndata = { first_name: '', last_name: '', email_address: '', status: '', group_id: null };
@@ -171,9 +168,6 @@ export default class CSVReader1 extends Component {
         }
       }
     }
-
-
-
 
   }
 
