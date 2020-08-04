@@ -11,6 +11,6 @@ $factory->define(Person::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email_address' => $faker->email,
         'status' => (bool)random_int(0, 1) ? 'active' : 'archived',
-        'group_id' => $faker->randomDigit
+        'group_id' => ';' . $faker->randomDigit . ';'
     ];
 });

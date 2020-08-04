@@ -14,8 +14,7 @@ class PeopleGroupsController extends Controller
      */
     public function index()
     {
-        $groups = DB::select('select * from breeze.`groups` left join breeze.people on breeze.people.group_id = breeze.`groups`.id where breeze.people.status = \'active\' or breeze.people.id IS NULL order by group_name, first_name, last_name
-        ', [1]);
+        $groups = DB::select('select * from breeze.`groups` left join  breeze.people on breeze.people.group_id  like concat(\'%;\',trim(breeze.`groups`.id),\';%\') where breeze.people.status = \'active\' or breeze.people.id IS NULL order by group_name, first_name, last_name', [1]);
 
         $jobj = array("data"=>[]);
 

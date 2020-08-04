@@ -44,7 +44,7 @@ class PeopleController extends Controller
             'last_name'     => 'required|max:255',
             'email_address' => 'required|email',
             'status'        => Rule::in(['active', 'archived']),
-            'group_id'      => 'nullable|integer'
+            'group_id'      => 'nullable|max:255'
         ]);
 
         $person = Person::create($request->all());

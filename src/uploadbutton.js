@@ -73,7 +73,6 @@ async function runAction(fnurl = '',data = {}, i, csvType, fndata, myelement) {
           setTimeout(function(){ window.location.reload(false); }, 3000);
         })
         .catch(function (error) {
-          console.log(error.status);
           //console.error('Error:', error);
         });
     })

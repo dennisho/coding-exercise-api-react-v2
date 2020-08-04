@@ -1,1 +1,14 @@
-Hello!For this coding exercise, I have installed 5 additional packages to use. Here are the packages:i) Uploading and parsing CSV files - papaparse, babel-loaderii) Groups Table - jquery, datatables.net, datatables.net-dtI also included my testing CSV files under the folder called csvtestfile.Thank you for the time you’re putting in to review my code!  Cheers!
+Hello!
+
+For this coding exercise, I have installed 5 additional packages to use. Here are the packages:
+
+i) Uploading and parsing CSV files - papaparse, babel-loader
+ii) Groups Table - jquery, datatables.net, datatables.net-dt
+
+For the People Table and the People csv file, I added a new column called group_id.  It is assoicated with the Groups Table ID.
+The group_id is a nullable string type.  The format of the data is each ID begins and ends with a semicolon (For example - ;1;3;).
+By doing so, we can assign multiple groups to each person.
+
+I included my testing CSV files under the folder called csvtestfile.
+
+Thank you for the time you're putting in to review my code!  Cheers!
