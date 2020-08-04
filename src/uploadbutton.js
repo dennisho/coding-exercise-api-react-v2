@@ -37,6 +37,7 @@ export async function GETdataNoBody(url = '') {
     redirect: 'follow',
     referrerPolicy: 'no-referrer'
   });
+
   return response.json();
 }
 
@@ -60,7 +61,7 @@ async function runAction(fnurl = '',data = {}, i, csvType, fndata, myelement) {
           console.log(data3);
           myelement = (<div className="ui blue inverted segment"><strong>Success</strong></div>);
           ReactDOM.render(myelement, document.getElementById('errmsg'));
-          //window.location.reload(false);
+          window.location.reload(false);
         })
         .catch(function (error) {
           //console.error('Error:', error);
