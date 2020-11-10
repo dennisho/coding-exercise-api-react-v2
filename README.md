@@ -84,8 +84,8 @@ We love TDD! So we’d love to see tests for the API and ReactJS application. Wr
 
 UI tests can be run with `yarn test`
 
-## Finally
+<!---## Finally--->
 
-We’re a fully remote team so communication is really important. Be sure to include any instructions needed for any of our team mates to run and test.
+<!---We’re a fully remote team so communication is really important. Be sure to include any instructions needed for any of our team mates to run and test.--->
 
-Good luck and we'll get back to you once we review it!
+<!---Good luck and we'll get back to you once we review it!--->
